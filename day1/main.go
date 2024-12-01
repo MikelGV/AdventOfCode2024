@@ -70,38 +70,6 @@ func bubbleSort(list []int) {
     }
 }
 
-func ReadData(filename string) ([]int, []int, error) {
-	file, err := os.Open(filename)
-	if err != nil {
-		return nil, nil, err
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-	var left, right []int
-
-	for scanner.Scan() {
-		line := scanner.Text()
-		nums := strings.Fields(line)
-		for i, num := range nums {
-			val, err := strconv.Atoi(num)
-			if err != nil {
-				return nil, nil, err
-			}
-			if i%2 == 0 {
-				left = append(left, val)
-			} else {
-				right = append(right, val)
-			}
-		}
-	}
-	if err := scanner.Err(); err != nil {
-		return nil, nil, err
-	}
-
-	return left, right, nil
-}
-
 
 /**
     In the second part we search for the similarity score
